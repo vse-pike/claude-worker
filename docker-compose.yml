@@ -1,0 +1,21 @@
+services:
+  claude-worker:
+    image: vsepike/claude-worker:latest
+    container_name: claude-worker
+    env_file: .env
+    volumes:
+      - ./workspace:/workspace
+      - claude:/root/.claude
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - "127.0.0.1:8090:8090"
+    restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+
+volumes:
+  claude:
+
+networks:
+  agentnet:
