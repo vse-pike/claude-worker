@@ -18,4 +18,6 @@ volumes:
   claude:
 
 networks:
-  agentnet:
+  default:
+    name: agentnet
+    external: true
